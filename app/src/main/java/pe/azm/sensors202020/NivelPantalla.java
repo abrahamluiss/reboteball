@@ -21,6 +21,8 @@ public class NivelPantalla extends View {
     Bitmap fondo;  //  dibujo de fondo
     Paint trazoDibujo;
     Bitmap burbuja;
+    MediaPlayer mediaPlayer=MediaPlayer.create(getContext(), R.raw.latigo);
+
     public NivelPantalla(Context contexto, int lado){   // recibe el tamaño del espacio de dibujo con "lado"
         super(contexto);
         this.lado=lado;
@@ -37,9 +39,11 @@ public class NivelPantalla extends View {
 
         BitmapDrawable bola=(BitmapDrawable) ContextCompat.getDrawable(contexto, R.drawable.burbuja);
         burbuja=bola.getBitmap();
+        mediaPlayer.start();
         burbuja=Bitmap.createScaledBitmap(burbuja, radioPeq*2, radioPeq*2, true);
-        //MediaPlayer mediaPlayer=MediaPlayer.create(getContext(), R.raw.latigo);
+
         //mediaPlayer.start();
+
 
     }
 
@@ -77,12 +81,19 @@ public class NivelPantalla extends View {
 
     protected void onDraw(Canvas lienzo){
         super.onDraw(lienzo);
+
         lienzo.drawBitmap(fondo, 0, 0, null);
         int posX=radio-radioPeq+(int)(angulos[0]/10*radio);
+        if(posX == 180 || posX == -180){
+            mediaPlayer.start();
+        }
         int posY=radio-radioPeq-(int)(angulos[1]/10*radio);
+        if(posY == 180){
+            mediaPlayer.start();
+
+        }
+
         lienzo.drawBitmap(burbuja, posX, posY, null);
-
-
 
 
     }
