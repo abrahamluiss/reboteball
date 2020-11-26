@@ -21,7 +21,7 @@ public class NivelPantalla extends View {
     Bitmap fondo;  //  dibujo de fondo
     Paint trazoDibujo;
     Bitmap burbuja;
-    MediaPlayer mediaPlayer=MediaPlayer.create(getContext(), R.raw.latigo);
+    MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.latigo);
 
     public NivelPantalla(Context contexto, int lado){   // recibe el tamaño del espacio de dibujo con "lado"
         super(contexto);
@@ -56,7 +56,7 @@ public class NivelPantalla extends View {
         Paint lapiz=new Paint();
         lapiz.setColor(Color.RED);
         lienzo.drawCircle(radio, radio, radio, lapiz);
-        lapiz.setColor(Color.BLACK);
+        lapiz.setColor(Color.MAGENTA);
         lienzo.drawCircle(radio, radio, radio-trazo, lapiz);
         lapiz.setColor(Color.RED);
         lienzo.drawCircle(radio, radio, radioPeq+trazo, lapiz);
@@ -90,7 +90,6 @@ public class NivelPantalla extends View {
         int posY=radio-radioPeq-(int)(angulos[1]/10*radio);
         if(posY == 180){
             mediaPlayer.start();
-
         }
 
         lienzo.drawBitmap(burbuja, posX, posY, null);
